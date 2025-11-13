@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -26,6 +27,7 @@ public class EnemyBrain : MonoBehaviour
     public float lostSightTime = 3f;
     public float attackRange = 2f;
     public float attackCooldown = 2f;
+    public float waitAfterAttack = 2f;
     public float stealthWaitTime = 10f;
     public float stealthTriggerDistance = 6f;
     public float attackDamage = 10f;
@@ -50,6 +52,7 @@ public class EnemyBrain : MonoBehaviour
     private float stateTimer;
     private float lastVoiceTime;
     private float lastAttackTime;
+    private float forWaitAfterAttack;
     private Vector3 lastHeardPosition;
     private bool playerInSight;
     private bool hiding;
@@ -142,18 +145,26 @@ public class EnemyBrain : MonoBehaviour
     {
         if (player == null) return;
 
+        agent.speed = 0f;
+
         transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
         float distance = Vector3.Distance(transform.position, player.position);
         
         if (distance > attackRange * 1.3f)
         {
-            currentState = NPCState.Chase;
-            agent.isStopped = false;
-            agent.speed = 2.5f;
-            animator.SetBool("battle", false);
-            animator.SetBool("slow running", true);
-            animator.SetBool("walking", false);
-            return;
+            forWaitAfterAttack = Time.time;
+
+            if (forWaitAfterAttack >= 3f)
+            {
+                currentState = NPCState.Chase;
+                agent.isStopped = false;
+                agent.speed = 2.5f;
+                animator.SetBool("battle", false);
+                animator.SetBool("slow running", true);
+                animator.SetBool("walking", false);
+
+                return;
+            }
         }
 
         if (Time.time - lastAttackTime >= attackCooldown)
@@ -161,7 +172,6 @@ public class EnemyBrain : MonoBehaviour
             lastAttackTime = Time.time;
             PlayVoice(attackClips);
             animator.SetBool("battle", true);
-            agent.speed = 0f;
             animator.SetBool("slow running", false);
             animator.SetBool("walking", false);
         }

@@ -72,14 +72,12 @@ public class Footsteps : MonoBehaviour
         {
             switch (hit.collider.tag)
             {
-                // case "Grass":
-                //     return grassFootsteps[Random.Range(0, grassFootsteps.Length)];
                 case "Ground":
-                    return woodFootsteps[Random.Range(0, woodFootsteps.Length)];
+                    return woodFootsteps[Random.Range(0, woodFootsteps.Length-1)];
                 case "Metal":
-                    return metalFootsteps[Random.Range(0, metalFootsteps.Length)];
+                    return metalFootsteps[Random.Range(0, metalFootsteps.Length-1)];
                 case "Grass":
-                    return grassFootSteps[Random.Range(0, metalFootsteps.Length)];
+                    return grassFootSteps[Random.Range(0, metalFootsteps.Length-1)];
             }
         }
         // Debug.Log("not recognized");

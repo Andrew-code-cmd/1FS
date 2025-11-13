@@ -2512,6 +2512,7 @@ GameObject:
   - component: {fileID: 340865450}
   - component: {fileID: 340865449}
   - component: {fileID: 340865448}
+  - component: {fileID: 340865453}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -2753,6 +2754,22 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &340865453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340865445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5afde717996a914c9f427637922ae84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraZoom
+  cam: {fileID: 340865452}
+  zoomFOV: 30
+  normalFOV: 60
+  zoomSpeed: 10
 --- !u!1 &359625309
 GameObject:
   m_ObjectHideFlags: 0
@@ -2895,7 +2912,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0aa363f6d8175d045b7451a1448a5efa, type: 3}
   - {fileID: 8300000, guid: b8e4e328179d20e4fa4f50ddf7481a24, type: 3}
   - {fileID: 8300000, guid: 29fedefdd6c63e745a261e4db3139624, type: 3}
-  grassFootSteps: []
+  grassFootSteps:
+  - {fileID: 8300000, guid: 7dcf8ddd70afe884c8b0d59c78ea107c, type: 3}
+  - {fileID: 8300000, guid: 51a7ac33bcca0134c8d97a3b5131ddea, type: 3}
   stepInterval: 0.5
   runStepInterval: 0.33
   walkSpeedThreshold: 0.1
@@ -2945,13 +2964,13 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 85
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -4887,7 +4906,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &629660201
 Transform:
   m_ObjectHideFlags: 0
@@ -10444,7 +10463,7 @@ GameObject:
   - component: {fileID: 1519007232}
   m_Layer: 6
   m_Name: Terrain_0_0_ba89e8cd-b37c-4826-bfeb-c19e7531647d
-  m_TagString: Ground
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -13431,7 +13450,7 @@ Transform:
   m_GameObject: {fileID: 1890996638}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.7, y: 0.97937, z: -3.48}
+  m_LocalPosition: {x: 10.64, y: 0.97937, z: -3.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13445,17 +13464,17 @@ AudioReverbZone:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1890996638}
   m_Enabled: 1
-  m_MinDistance: 2
-  m_MaxDistance: 15.03
-  m_ReverbPreset: 8
+  m_MinDistance: 150
+  m_MaxDistance: 250
+  m_ReverbPreset: 7
   m_Room: -1000
-  m_RoomHF: -500
-  m_DecayTime: 3.92
-  m_DecayHFRatio: 0.7
-  m_Reflections: -1230
+  m_RoomHF: -476
+  m_DecayTime: 4.32
+  m_DecayHFRatio: 0.59
+  m_Reflections: -789
   m_ReflectionsDelay: 0.02
-  m_Reverb: -2
-  m_ReverbDelay: 0.029
+  m_Reverb: -289
+  m_ReverbDelay: 0.03
   m_HFReference: 5000
   m_Diffusion: 100
   m_Density: 100
@@ -19080,7 +19099,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2031037753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19872,6 +19891,7 @@ MonoBehaviour:
   lostSightTime: 3
   attackRange: 2
   attackCooldown: 2
+  waitAfterAttack: 2
   stealthWaitTime: 15
   stealthTriggerDistance: 6
   attackDamage: 10
@@ -19902,7 +19922,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2134882378}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
