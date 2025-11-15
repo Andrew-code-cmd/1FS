@@ -79,8 +79,7 @@ public class DoorLookController : MonoBehaviour
 
         // Обновление текста и взаимодействие
         if (lookingAtBtn && hintText != null)
-            hintText.text = $"Нажмите <E> чтобы взаимодействовать";
-        
+            hintText.text = $"Нажмите {interactKey} чтобы открыть дверь";
     }
 
     void ToggleDoor()
